@@ -1,0 +1,33 @@
+<template>
+	<lightning-card title="Book an Appointment">
+		<div class="slds-m-around_medium">
+			<lightning-input label="Customer Name" value={appointment.customerName} onchange={handleInputChange}
+				data-id="customerName" required></lightning-input>
+			<lightning-input label="Customer Email" type="email" value={appointment.customerEmail}
+				onchange={handleInputChange} data-id="customerEmail" required></lightning-input>
+			<lightning-record-picker object-api-name="Contact" label="Contact" value={appointment.contact}
+				onchange={handleInputChange} data-id="contact" required></lightning-record-picker>
+			<!-- <lightning-input label="Contact" type="Phone" value={contact} onchange={handleInputChange} data-id="contact" required></lightning-input> -->
+			<lightning-input label="Subject" type="Phone" value={appointment.subject} onchange={handleInputChange}
+				data-id="subject" required></lightning-input>
+			<lightning-input label="Description" type="text" value={appointment.description}
+				onchange={handleInputChange} data-id="description" required></lightning-input>
+			<lightning-input type="date" label="Appointment Date" value={appointment.appointmentDate}
+				onchange={handleDateChange} required></lightning-input>
+			<lightning-input type="time" label="Appointment Time" value={appointment.appointmentTime}
+				onchange={handleTimeChange} required></lightning-input>
+
+			<div class="slds-m-top_small">
+				<div style="width:70%;margin:auto;">
+					<lightning-button label="Check Availability" onclick={checkAvailability} class="slds-m-right_small">
+					</lightning-button>
+					<template if:true={availabilityMessage}>
+						<p>{availabilityMessage}</p>
+					</template>
+					<lightning-button variant="brand" label="Book Appointment" onclick={handleSave}
+						disabled={isSaveDisabled}></lightning-button>
+				</div>
+			</div>
+		</div>
+	</lightning-card>
+</template>
